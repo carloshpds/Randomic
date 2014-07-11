@@ -1,0 +1,132 @@
+
+
+
+#index-search-view
+  
+  #app-title
+    font-family: 'Poiret One', cursive
+    color       : #000000
+
+
+  #background-title
+    position              : fixed
+    top                   : 0
+    left                  : 50%
+    width                 : 300px
+    height                : 300%
+    margin                : -150px
+    -webkit-box-shadow    : 0 0 1px 0 black
+    -moz-box-shadow       : 0 0 1px 0 black
+    box-shadow            : 0 0 1px 0 black
+    background            : url('../img/texture-bg.jpg')
+    opacity               : 0.6
+
+  // Item
+  // ==========================================
+  #content-header-page
+    width              : 100%
+    padding            : 35px 0
+    text-shadow        : 0 1px 0 rgba(0,0,0,.15) 
+    box-shadow         : 0 0 10px 0 #000000
+    -webkit-box-shadow : 0 0 10px 0 #000000
+    -moz-box-shadow    : 0 0 10px 0 #000000
+    background         : url('../img/squad-bg.png') repeat, #CBB923
+    
+    
+    // Sub-item lv 1
+    // ==========================================
+    #logo-container
+      text-align : center 
+    
+    // Sub-item lv 1
+    // ==========================================
+    .search-group-button 
+      box-shadow  : 0 0 1px 0px black
+
+  // Item
+  // ==========================================
+  .result-item
+    position           : relative
+    font-size          : 12px 
+    padding            : 15px
+    margin             : 15px 0
+    min-height         : 30px
+    background         : url('../img/squad-bg.png') repeat, #FFFFFF
+    -webkit-box-shadow : 0 0 1px 0 #000000
+    -moz-box-shadow    : 0 0 1px 0 #000000
+    box-shadow         : 0 0 1px 0 #000000
+    
+    
+    .status-tag
+      width         : 60px
+      height        : 100%
+      position      : absolute
+      top           : 0
+      right         : -1px
+      border        : 4px solid #FFFFFF
+      outline       : 0
+      padding       : 0
+
+
+      @media screen and (max-width: 240px)
+        width     : 30px
+        font-size : 11px
+      
+    .train-line-name-container
+      font-family : 'Poiret One', cursive, arial
+      text-align  : left
+      font-size   : 16px
+      font-family : 'Poiret One', cursive
+
+      @media screen and (max-width: 320px)
+        text-align  : center
+        font-size   : 18px
+
+      @media screen and (min-width: 321px) and (max-width: 992px)
+        text-align  : center
+        font-size   : 24px
+
+      @media screen and (min-width: 992px) and (max-width: 1200px)
+        font-size   : 27px
+
+
+    .status-tag.status-available
+      background-color: lighten(#2ecc71, 10%)
+
+    .status-tag.status-slow
+      background-color: lighten(#f89406, 10%)
+
+    .status-tag.status-unavailable
+      background-color: lighten(#f00, 10%)
+
+    .status-available
+      color: #2ecc71
+     
+    .status-slow
+      color: #f89406
+
+    .status-unavailable
+      color: #f00
+
+    .retweet-icon
+      font-size     : 1em
+      margin-left   : -12%
+      margin-top    : -12%
+      color         : black
+      opacity       : 0.5 
+
+      @media screen and (max-width: 240px)
+        font-size     : 11px
+        margin-left   : -21%
+        margin-top    : -21%
+  
+  .terms-message-footer
+    background         : url('../img/squad-bg.png') repeat, #59C4BC
+    padding            : 40px
+    -webkit-box-shadow : 0 0 1px 0 #000000
+    -moz-box-shadow    : 0 0 1px 0 #000000
+    box-shadow         : 0 0 1px 0 #000000
+    position           : relative
+    text-align         : center 
+
+      

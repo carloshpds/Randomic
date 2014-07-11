@@ -1,0 +1,30 @@
+/* line 3, ../sass/application.sass */
+.nav-hungryy-app {
+  margin-bottom: 0px;
+  box-shadow: 0 0 10px 0 black;
+}
+/* line 7, ../sass/application.sass */
+.nav-hungryy-app a.dropdown-toggle:hover {
+  cursor: pointer;
+}
+
+/* line 10, ../sass/application.sass */
+body {
+  background: url("../img/texture-bg.jpg");
+  overflow-x: hidden;
+}
+
+/* line 14, ../sass/application.sass */
+body > main > .container {
+  padding-top: 55px;
+}
+
+/* line 18, ../sass/application.sass */
+.nav-tabs > li {
+  cursor: pointer;
+}
+
+/* line 21, ../sass/application.sass */
+.transparent {
+  background: transparent;
+}
