@@ -10,7 +10,7 @@
 
 /* line 10, ../sass/application.sass */
 body {
-  background: url("../img/texture-bg.jpg");
+  background: #f6f6f6;
   overflow-x: hidden;
 }
 
