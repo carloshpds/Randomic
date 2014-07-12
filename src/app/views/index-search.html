@@ -1,6 +1,6 @@
 
 <article id="index-search-view">
-    
+
   <section class="bs-header" id="content-header-page">
     <div id="background-title"></div>
 
@@ -8,24 +8,21 @@
       <!-- Search Form -->
       <div class="row">
         <div class="col-md-12 col-sm-12" style="text-align: center;">
-         <h1 id="app-title">
-          Randomic <br />
-          <h4>Match</h4>
-          </h1>
+          <div class="randomic-logo"></div>
 
-        </div>        
+        </div>
       </div>
-      
+
     </div>
   </section>
-  
-  
-  
+
+
+
   <!-- Results Section -->
   <section class="container">
 
 
-    
+
     <!-- Loader Section -->
     <div class="row" ng-if="showLoader">
       <div class="col-md-12 col-sm-12" style="background: url('styles/img/loader.gif') center center no-repeat; height: 100px; background-size: 100px 100px;">
@@ -52,7 +49,7 @@
           <button class="btn btn-default btn-block" ng-click="selectTeamsToMatch()">Selecionar Times Para Partida</button>
         </li>
       </ul>
-        
+
       </div>
     </div>
 
@@ -68,38 +65,38 @@
           <div >
             <ul class="list-unstyled" >
               <li ng-repeat="player in players" ng-class="{'result-item': true, animated: true, bounceIn: true}">
-                <div class="row">     
+                <div class="row">
                   <!-- Nome da trainLine -->
                   <div class="col-md-7 train-line-name-container">
                     <span ng-bind="$index + 1"></span> - <span ng-bind="player"></span>
-                  </div>        
+                  </div>
                 </div>
               </li>
             </ul>
           </div>
         </div>
-        
+
         <!-- Teams -->
         <div accordion-group ng-if="teams.length > 0">
           <div accordion-heading>
             <h3>Teams</h3>
           </div>
           <ul class="list-unstyled" >
-            
+
             <li ng-repeat="team in teams" ng-class="{'result-item': true, animated: true, bounceIn: true}">
-              <div class="row">     
+              <div class="row">
                 <!-- Nome da trainLine -->
                 <div class="col-md-7 train-line-name-container">
                   <span ng-bind="$index + 1"></span> - <span ng-bind="team"></span>
-                </div>        
+                </div>
               </div>
             </li>
           </ul>
         </div>
       </div>
 
-      
-      
+
+
       <!-- Groups and Teams -->
       <div class="col-md-4" ng-if="groups.length > 0">
 
@@ -109,14 +106,14 @@
           <input type="text" ng-model="playerFilter" placeholder="Achar jogador" class="form-control">
           <li ng-repeat="group in groups | filter:playerFilter" ng-class="{'result-item': true, animated: true, bounceIn: true}">
             <!-- Nome da trainLine -->
-            
+
               <h4> Grupo <span ng-bind="$index + 1"></span></h4>
               <ul>
                 <li ng-repeat="player in group.players ">
                   <p ng-bind="player"></p>
                 </li>
               </ul>
-             
+
           </li>
         </ul>
       </div>
@@ -138,6 +135,6 @@
       </div>
     </div>
 
-    
+
   </section>
 </article>

@@ -1,9 +1,9 @@
-/* line 6, ../../sass/index-seach/index-search.sass */
+/* line 3, ../../sass/index-seach/index-search.sass */
 #index-search-view #app-title {
   font-family: "Poiret One", cursive;
   color: black;
 }
-/* line 11, ../../sass/index-seach/index-search.sass */
+/* line 8, ../../sass/index-seach/index-search.sass */
 #index-search-view #background-title {
   position: fixed;
   top: 0;
@@ -11,31 +11,26 @@
   width: 300px;
   height: 300%;
   margin: -150px;
-  -webkit-box-shadow: 0 0 1px 0 black;
-  -moz-box-shadow: 0 0 1px 0 black;
-  box-shadow: 0 0 1px 0 black;
-  background: url("../img/texture-bg.jpg");
   opacity: 0.6;
 }
-/* line 26, ../../sass/index-seach/index-search.sass */
+/* line 19, ../../sass/index-seach/index-search.sass */
 #index-search-view #content-header-page {
+  background: white;
   width: 100%;
   padding: 35px 0;
-  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.15);
-  box-shadow: 0 0 10px 0 black;
-  -webkit-box-shadow: 0 0 10px 0 black;
-  -moz-box-shadow: 0 0 10px 0 black;
-  background: url("../img/squad-bg.png") repeat, #cbb923;
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.15);
+  -webkit-box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.15);
+  -moz-box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.15);
 }
-/* line 38, ../../sass/index-seach/index-search.sass */
+/* line 30, ../../sass/index-seach/index-search.sass */
 #index-search-view #content-header-page #logo-container {
   text-align: center;
 }
-/* line 43, ../../sass/index-seach/index-search.sass */
+/* line 35, ../../sass/index-seach/index-search.sass */
 #index-search-view #content-header-page .search-group-button {
   box-shadow: 0 0 1px 0px black;
 }
-/* line 48, ../../sass/index-seach/index-search.sass */
+/* line 40, ../../sass/index-seach/index-search.sass */
 #index-search-view .result-item {
   position: relative;
   font-size: 12px;
@@ -47,7 +42,7 @@
   -moz-box-shadow: 0 0 1px 0 black;
   box-shadow: 0 0 1px 0 black;
 }
-/* line 60, ../../sass/index-seach/index-search.sass */
+/* line 52, ../../sass/index-seach/index-search.sass */
 #index-search-view .result-item .status-tag {
   width: 60px;
   height: 100%;
@@ -59,13 +54,13 @@
   padding: 0;
 }
 @media screen and (max-width: 240px) {
-  /* line 60, ../../sass/index-seach/index-search.sass */
+  /* line 52, ../../sass/index-seach/index-search.sass */
   #index-search-view .result-item .status-tag {
     width: 30px;
     font-size: 11px;
   }
 }
-/* line 75, ../../sass/index-seach/index-search.sass */
+/* line 67, ../../sass/index-seach/index-search.sass */
 #index-search-view .result-item .train-line-name-container {
   font-family: "Poiret One", cursive, arial;
   text-align: left;
@@ -73,50 +68,50 @@
   font-family: "Poiret One", cursive;
 }
 @media screen and (max-width: 320px) {
-  /* line 75, ../../sass/index-seach/index-search.sass */
+  /* line 67, ../../sass/index-seach/index-search.sass */
   #index-search-view .result-item .train-line-name-container {
     text-align: center;
     font-size: 18px;
   }
 }
 @media screen and (min-width: 321px) and (max-width: 992px) {
-  /* line 75, ../../sass/index-seach/index-search.sass */
+  /* line 67, ../../sass/index-seach/index-search.sass */
   #index-search-view .result-item .train-line-name-container {
     text-align: center;
     font-size: 24px;
   }
 }
 @media screen and (min-width: 992px) and (max-width: 1200px) {
-  /* line 75, ../../sass/index-seach/index-search.sass */
+  /* line 67, ../../sass/index-seach/index-search.sass */
   #index-search-view .result-item .train-line-name-container {
     font-size: 27px;
   }
 }
-/* line 93, ../../sass/index-seach/index-search.sass */
+/* line 85, ../../sass/index-seach/index-search.sass */
 #index-search-view .result-item .status-tag.status-available {
   background-color: #54d98c;
 }
-/* line 96, ../../sass/index-seach/index-search.sass */
+/* line 88, ../../sass/index-seach/index-search.sass */
 #index-search-view .result-item .status-tag.status-slow {
   background-color: #faa937;
 }
-/* line 99, ../../sass/index-seach/index-search.sass */
+/* line 91, ../../sass/index-seach/index-search.sass */
 #index-search-view .result-item .status-tag.status-unavailable {
   background-color: #ff3333;
 }
-/* line 102, ../../sass/index-seach/index-search.sass */
+/* line 94, ../../sass/index-seach/index-search.sass */
 #index-search-view .result-item .status-available {
   color: #2ecc71;
 }
-/* line 105, ../../sass/index-seach/index-search.sass */
+/* line 97, ../../sass/index-seach/index-search.sass */
 #index-search-view .result-item .status-slow {
   color: #f89406;
 }
-/* line 108, ../../sass/index-seach/index-search.sass */
+/* line 100, ../../sass/index-seach/index-search.sass */
 #index-search-view .result-item .status-unavailable {
   color: red;
 }
-/* line 111, ../../sass/index-seach/index-search.sass */
+/* line 103, ../../sass/index-seach/index-search.sass */
 #index-search-view .result-item .retweet-icon {
   font-size: 1em;
   margin-left: -12%;
@@ -125,14 +120,14 @@
   opacity: 0.5;
 }
 @media screen and (max-width: 240px) {
-  /* line 111, ../../sass/index-seach/index-search.sass */
+  /* line 103, ../../sass/index-seach/index-search.sass */
   #index-search-view .result-item .retweet-icon {
     font-size: 11px;
     margin-left: -21%;
     margin-top: -21%;
   }
 }
-/* line 123, ../../sass/index-seach/index-search.sass */
+/* line 115, ../../sass/index-seach/index-search.sass */
 #index-search-view .terms-message-footer {
   background: url("../img/squad-bg.png") repeat, #59c4bc;
   padding: 40px;
