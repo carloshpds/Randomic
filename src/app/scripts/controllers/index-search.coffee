@@ -34,12 +34,16 @@ angular.module('RandomicApp')
     ] 
 
     @teamList = [
-      'Milan'
-      'Palmeiras'
-      'PSG'
-      'Real Madrid'
-      'Barcelona'
       'Arsenal'
+      'Liverpool'
+      'Atlético de Madri'
+      'Inter de Milão'
+      'Milan'
+      'Valencia'
+      'Zenit'
+      'Galatasaray'
+      'Schalke 04'
+      'Wolfsburg'
     ]
     
 
