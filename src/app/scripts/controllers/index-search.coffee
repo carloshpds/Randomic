@@ -39,8 +39,6 @@ angular.module('RandomicApp')
       'Atlético de Madri'
       'Inter de Milão'
       'Milan'
-      'Valencia'
-      'Zenit'
       'Galatasaray'
       'Schalke 04'
       'Wolfsburg'
