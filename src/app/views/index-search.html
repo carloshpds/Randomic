@@ -14,6 +14,47 @@
       </div>
 
     </div>
+
+     <div accordion close-others="false" style="position: fixed; top: 0; left: 50px; z-index: 10000;width: 400px;cursor: pointer;">
+
+        <!-- Players -->
+        <div accordion-group  ng-if="players.length > 0" >
+          <div accordion-heading>
+            <h3>Players</h3>
+          </div>
+          <!-- Players -->
+          <div >
+            <ul class="list-unstyled" >
+              <li ng-repeat="player in players" ng-class="{'result-item': true, animated: true, bounceIn: true}">
+                <div class="row">
+                  <!-- Nome da trainLine -->
+                  <div class="col-md-7 train-line-name-container">
+                    <span ng-bind="$index + 1"></span> - <span ng-bind="player"></span>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Teams -->
+        <div accordion-group ng-if="teams.length > 0">
+          <div accordion-heading>
+            <h3>Teams</h3>
+          </div>
+          <ul class="list-unstyled" >
+
+            <li ng-repeat="team in teams" ng-class="{'result-item': true, animated: true, bounceIn: true}">
+              <div class="row">
+                <!-- Nome da trainLine -->
+                <div class="col-md-7 train-line-name-container">
+                  <span ng-bind="$index + 1"></span> - <span ng-bind="team"></span>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
   </section>
 
 
@@ -52,53 +93,27 @@
 
       </div>
     </div>
+    
+    <div class="row">
+      <div class="col-md-12" ng-if="match.length > 0">
+
+        <!-- Groups -->
+        <ul class="list-unstyled" ng-model="match">
+          <h3>Partida</h3>
+          <li  ng-class="{'result-item': true, animated: true, bounceIn: true}">
+            Jogador 1: <strong ng-bind="match[0]"></strong>
+          </li>
+          <li  ng-class="{'result-item': true, animated: true, bounceIn: true}">
+            Jogador 2: <strong ng-bind="match[1]"></strong>
+          </li>
+        </ul>
+      </div>
+    </div>
 
     <div class="row">
-      <div accordion close-others="false" class="col-md-4">
 
-        <!-- Players -->
-        <div accordion-group  ng-if="players.length > 0">
-          <div accordion-heading>
-            <h3>Players</h3>
-          </div>
-          <!-- Players -->
-          <div >
-            <ul class="list-unstyled" >
-              <li ng-repeat="player in players" ng-class="{'result-item': true, animated: true, bounceIn: true}">
-                <div class="row">
-                  <!-- Nome da trainLine -->
-                  <div class="col-md-7 train-line-name-container">
-                    <span ng-bind="$index + 1"></span> - <span ng-bind="player"></span>
-                  </div>
-                </div>
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        <!-- Teams -->
-        <div accordion-group ng-if="teams.length > 0">
-          <div accordion-heading>
-            <h3>Teams</h3>
-          </div>
-          <ul class="list-unstyled" >
-
-            <li ng-repeat="team in teams" ng-class="{'result-item': true, animated: true, bounceIn: true}">
-              <div class="row">
-                <!-- Nome da trainLine -->
-                <div class="col-md-7 train-line-name-container">
-                  <span ng-bind="$index + 1"></span> - <span ng-bind="team"></span>
-                </div>
-              </div>
-            </li>
-          </ul>
-        </div>
-      </div>
-
-
-
-      <!-- Groups and Teams -->
-      <div class="col-md-4" ng-if="groups.length > 0">
+      <!-- Groups -->
+      <div class="col-md-12" ng-if="groups.length > 0">
 
         <!-- Groups -->
         <ul class="list-unstyled">
@@ -118,21 +133,7 @@
         </ul>
       </div>
 
-
-      <!-- Groups and Teams -->
-      <div class="col-md-4" ng-if="match.length > 0">
-
-        <!-- Groups -->
-        <ul class="list-unstyled" ng-model="match">
-          <h3>Partida</h3>
-          <li  ng-class="{'result-item': true, animated: true, bounceIn: true}">
-            Jogador 1: <strong ng-bind="match[0]"></strong>
-          </li>
-          <li  ng-class="{'result-item': true, animated: true, bounceIn: true}">
-            Jogador 2: <strong ng-bind="match[1]"></strong>
-          </li>
-        </ul>
-      </div>
+     
     </div>
 
 
