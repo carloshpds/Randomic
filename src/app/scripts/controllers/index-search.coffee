@@ -49,6 +49,7 @@ angular.module('RandomicApp')
     # Attributes
     # ====================================================
     @setAttributesToDefaultValue = =>
+      $scope.viewMode   = 'matchMode' 
       $scope.showLoader = no
       $scope.players    = angular.copy @playerList
       $scope.groups     = []
@@ -115,6 +116,10 @@ angular.module('RandomicApp')
         team         = teams.splice teamIndex, 1
         $scope.match.push team 
         i++
+
+    $scope.setViewMode = (mode) ->
+      $scope.viewMode = mode
+
 
     # ====================================================
     # Aux Methods

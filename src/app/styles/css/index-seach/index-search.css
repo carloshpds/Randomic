@@ -1,9 +1,17 @@
 /* line 3, ../../sass/index-seach/index-search.sass */
+#index-search-view .panel {
+  padding: 0;
+}
+/* line 7, ../../sass/index-seach/index-search.sass */
+#index-search-view .panel h3 {
+  margin: 0;
+}
+/* line 11, ../../sass/index-seach/index-search.sass */
 #index-search-view #app-title {
   font-family: "Poiret One", cursive;
   color: black;
 }
-/* line 8, ../../sass/index-seach/index-search.sass */
+/* line 16, ../../sass/index-seach/index-search.sass */
 #index-search-view #background-title {
   position: fixed;
   top: 0;
@@ -13,7 +21,7 @@
   margin: -150px;
   opacity: 0.6;
 }
-/* line 19, ../../sass/index-seach/index-search.sass */
+/* line 27, ../../sass/index-seach/index-search.sass */
 #index-search-view #content-header-page {
   background: white;
   width: 100%;
@@ -22,15 +30,15 @@
   -webkit-box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.15);
   -moz-box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.15);
 }
-/* line 30, ../../sass/index-seach/index-search.sass */
+/* line 38, ../../sass/index-seach/index-search.sass */
 #index-search-view #content-header-page #logo-container {
   text-align: center;
 }
-/* line 35, ../../sass/index-seach/index-search.sass */
+/* line 43, ../../sass/index-seach/index-search.sass */
 #index-search-view #content-header-page .search-group-button {
   box-shadow: 0 0 1px 0px black;
 }
-/* line 40, ../../sass/index-seach/index-search.sass */
+/* line 48, ../../sass/index-seach/index-search.sass */
 #index-search-view .result-item {
   position: relative;
   font-size: 12px;
@@ -42,7 +50,7 @@
   -moz-box-shadow: 0 0 1px 0 black;
   box-shadow: 0 0 1px 0 black;
 }
-/* line 52, ../../sass/index-seach/index-search.sass */
+/* line 60, ../../sass/index-seach/index-search.sass */
 #index-search-view .result-item .status-tag {
   width: 60px;
   height: 100%;
@@ -54,13 +62,13 @@
   padding: 0;
 }
 @media screen and (max-width: 240px) {
-  /* line 52, ../../sass/index-seach/index-search.sass */
+  /* line 60, ../../sass/index-seach/index-search.sass */
   #index-search-view .result-item .status-tag {
     width: 30px;
     font-size: 11px;
   }
 }
-/* line 67, ../../sass/index-seach/index-search.sass */
+/* line 75, ../../sass/index-seach/index-search.sass */
 #index-search-view .result-item .train-line-name-container {
   font-family: "Poiret One", cursive, arial;
   text-align: left;
@@ -68,21 +76,21 @@
   font-family: "Poiret One", cursive;
 }
 @media screen and (max-width: 320px) {
-  /* line 67, ../../sass/index-seach/index-search.sass */
+  /* line 75, ../../sass/index-seach/index-search.sass */
   #index-search-view .result-item .train-line-name-container {
     text-align: center;
     font-size: 18px;
   }
 }
 @media screen and (min-width: 321px) and (max-width: 992px) {
-  /* line 67, ../../sass/index-seach/index-search.sass */
+  /* line 75, ../../sass/index-seach/index-search.sass */
   #index-search-view .result-item .train-line-name-container {
     text-align: center;
     font-size: 24px;
   }
 }
 @media screen and (min-width: 992px) and (max-width: 1200px) {
-  /* line 67, ../../sass/index-seach/index-search.sass */
+  /* line 75, ../../sass/index-seach/index-search.sass */
   #index-search-view .result-item .train-line-name-container {
     font-size: 27px;
   }
