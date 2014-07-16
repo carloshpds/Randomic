@@ -42,6 +42,8 @@ angular.module('RandomicApp')
       'Galatasaray'
       'Schalke 04'
       'Wolfsburg'
+      'Zenit'
+      'Valencia'
     ]
     
 
