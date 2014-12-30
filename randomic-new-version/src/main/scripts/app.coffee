@@ -34,6 +34,7 @@ angular.module('RandomicApp', [
   'ui.router'
   'ui.bootstrap'
   'RandomicApp.scripts'
+  'ngTagsInput'
 ])
 
 

@@ -12,3 +12,4 @@ libs/quick-ng-repeat/quick-ng-repeat.js
 libs/jquery-cycle2/build/jquery.cycle2.js
 libs/jquery-cycle2/build/plugin/jquery.cycle2.carousel.min.js
 libs/jquery-custom-scrollbar/jquery.custom-scrollbar.js
+libs/ng-tags-input/ng-tags-input.js

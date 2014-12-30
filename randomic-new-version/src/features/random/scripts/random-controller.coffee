@@ -15,18 +15,11 @@ angular.module 'RandomicApp.controllers'
       # Attributes
       # =============================================
       $scope.items    = []
-      $scope.newItem  = null
 
       # =============================================
       # Methods
       # =============================================
-      $scope.addNewItem = ->
-        unless _.isEmpty($scope.newItem)
-          $scope.items.push $scope.newItem
-          $scope.newItem  = null
 
-      $scope.deleteItemByIndex = ($index) ->
-        $scope.items.splice $index, 1
 
       # =============================================
       # Initialize
