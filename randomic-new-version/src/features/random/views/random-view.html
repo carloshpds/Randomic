@@ -1,0 +1,101 @@
+
+<article id="random-view">
+
+  <section class="bs-header" id="content-header-page">
+
+    <div class="container">
+    
+      <div class="row">
+        <div class="col-md-12 col-sm-12 text-center">
+          <div class="randomic-logo"></div>
+        </div>
+      </div>
+      
+      
+      <!-- Items -->
+      <div class="row margin-top-default">
+        <div class="col-md-12 col-sm-12">
+          <div accordion close-others="false" style=" z-index: 10000; cursor: pointer; overflow: scroll;">
+
+            <!-- Items -->
+            <div accordion-group  ng-if="items.length > 0"> 
+              <div accordion-heading>
+                <h3>Items</h3>
+              </div>
+              <!-- Items -->
+              <div >
+                <ul class="list-unstyled" >
+                  <li ng-repeat="item in items track by $index"  
+                    ng-class="{'result-item': true, animated: true, fadeInDown: true}">
+                    
+                    <div class="row">
+                      
+                      <!-- Nome do item -->
+                      <div class="col-md-10 item-name-container">
+                        <span ng-bind="$index + 1"></span> - <span ng-bind="item"></span>
+                      </div>
+                      <div class="col-md-2">
+                        <button class="btn btn-danger pull-right" ng-click="deleteItemByIndex($index)">
+                          <span class="glyphicon glyphicon-remove"></span>
+                        </button>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+          
+           
+          </div>
+        </div>
+      </div>
+
+      <!-- Action Form -->
+      <form class="row" name="add-form">
+        <div class="col-md-11 margin-top-default">
+          <input type="text" name="new-item" placeholder="New item..." class="form-control" ng-model="newItem">
+        </div>
+        <div class="col-md-1 margin-top-default">
+          <button class="btn btn-primary form-control rdm-button" ng-click="addNewItem()">Add</button>
+        </div>
+      </form>
+
+      
+    </div>
+
+  </section>
+
+
+
+  <!-- Results Section -->
+  <section class="container">
+
+
+
+    <!-- Loader Section -->
+    <div class="row" ng-if="showLoader">
+      <div class="col-md-12 col-sm-12" style="background: url('styles/img/loader.gif') center center no-repeat; height: 100px; background-size: 100px 100px;">
+      </div>
+    </div>
+
+    
+    <!-- Result Items -->
+    <div class="row" ng-if="viewMode === 'matchMode'">
+      <div class="col-md-12" ng-if="match.length > 0">
+
+        <ul class="list-unstyled" ng-model="match">
+          
+          <li ng-repeat="item in resultItems" ng-class="{'result-item': true, animated: true, bounceIn: true}">
+            <strong ng-bind="item.name"></strong>
+          </li>
+          
+        </ul>
+        
+      </div>
+    </div>
+
+   
+
+  </section>
+</article>

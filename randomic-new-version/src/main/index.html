@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html ng-app="RandomicApp">
+  <head>
+    <!-- <meta charset="utf-8"> -->
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title>RandomicApp</title>
+    
+    <link href='http://fonts.googleapis.com/css?family=Poiret+One|Raleway:800' rel='stylesheet' type='text/css'>
+    <link href="styles/vendors.min.css"    rel="stylesheet">
+    <link href="styles/app.min.css"        rel="stylesheet">
+
+  </head>
+  <body>
+
+    <!--======================-->
+    <!-- Fb-root Content      -->
+    <!--======================-->
+    <div id="fb-root"></div>
+
+    <!--======================-->
+    <!-- Application Content  -->
+    <!--======================-->
+    <main id="app-container" ui-view=""></main>
+
+
+    <!--======================-->
+    <!-- Scripts              -->
+    <!--======================-->
+
+    <!--==========  Vendors  ============-->
+    <!-- build:js -->
+    <!-- include:js(list:dev/resources/include-source-list/vendors-scripts.txt) -->
+    <!-- endbuild -->
+
+
+    <!--==========    App    ============-->
+
+    <!-- Main -->
+    <!-- include:js(list:dev/resources/include-source-list/main-app-scripts.txt) -->
+
+    <!-- Features -->
+    <!-- include:js(list:dev/resources/include-source-list/features-scripts.txt) -->
+
+    <!-- Components -->
+    <!-- include:js(list:dev/resources/include-source-list/components-scripts.txt) -->
+
+
+  </body>
+</html>
