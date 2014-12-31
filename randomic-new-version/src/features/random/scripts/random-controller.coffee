@@ -14,7 +14,12 @@ angular.module 'RandomicApp.controllers'
       # =============================================
       # Attributes
       # =============================================
-      $scope.items    = []
+      $scope.items       = []
+      $scope.randomItems = []
+
+      $scope.randomForm =
+        allowDuplicateItem : no
+        numberOfItems      : 1
 
       # =============================================
       # Methods
@@ -24,7 +29,11 @@ angular.module 'RandomicApp.controllers'
       # =============================================
       # Initialize
       # =============================================
-      
+      $scope.getRandomItem = ->
+        $scope.randomItems.push 'Random Item'
+
+      $scope.resetRandomItems = ->
+        $scope.randomItems = []
        
       # =============================================
       # Return Instance

@@ -32,7 +32,14 @@ describe 'Controller: RandomController', ()->
   # =============================================
   # Tests
   # =============================================
+  describe '$scope.resetRandomItems', ->
+    it 'Should reset randomItems array', ->
+      $scope.randomItems = ['randomItem1', 'randomItem2', 'randomItem3']
+      $scope.resetRandomItems()
 
-  
+      expect($scope.randomItems.length).toEqual 0
+      
+      
+    
 
 

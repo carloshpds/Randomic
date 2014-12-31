@@ -199,16 +199,16 @@
     <h1>Code coverage report for <span class="entity">main/spec/utils/stateMock.js</span></h1>
     <h2>
         
-        Statements: <span class="metric">6.25% <small>(2 / 32)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Statements: <span class="metric">40.63% <small>(13 / 32)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         
         Branches: <span class="metric">0% <small>(0 / 6)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         
-        Functions: <span class="metric">0% <small>(0 / 9)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">55.56% <small>(5 / 9)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         
-        Lines: <span class="metric">6.25% <small>(2 / 32)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">40.63% <small>(13 / 32)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
     </h2>
@@ -270,10 +270,10 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -294,19 +294,19 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -318,11 +318,11 @@
 angular.module('stateMock', []);
 &nbsp;
 angular.module('stateMock').service("$state", [
-  '$q', <span class="fstat-no" title="function not covered" >function($q) {</span>
-<span class="cstat-no" title="statement not covered" >    this.expectedTransitions = [];</span>
-<span class="cstat-no" title="statement not covered" >    this.current = {};</span>
-<span class="cstat-no" title="statement not covered" >    this.transitionTo = (<span class="fstat-no" title="function not covered" >function(_this) {</span></span>
-<span class="cstat-no" title="statement not covered" >      return <span class="fstat-no" title="function not covered" >function(stateName) {</span></span>
+  '$q', function($q) {
+    this.expectedTransitions = [];
+    this.current = {};
+    this.transitionTo = (function(_this) {
+      return <span class="fstat-no" title="function not covered" >function(stateName) {</span>
 <span class="cstat-no" title="statement not covered" >        var deferred, expectedState, promise;</span>
 <span class="cstat-no" title="statement not covered" >        deferred = null;</span>
 <span class="cstat-no" title="statement not covered" >        expectedState = null;</span>
@@ -343,19 +343,19 @@ angular.module('stateMock').service("$state", [
 <span class="cstat-no" title="statement not covered" >        return promise;</span>
       };
     })(this);
-<span class="cstat-no" title="statement not covered" >    this.go = this.transitionTo;</span>
-<span class="cstat-no" title="statement not covered" >    this.is = (<span class="fstat-no" title="function not covered" >function(_this) {</span></span>
-<span class="cstat-no" title="statement not covered" >      return <span class="fstat-no" title="function not covered" >function(stateName) {</span></span>
+    this.go = this.transitionTo;
+    this.is = (function(_this) {
+      return <span class="fstat-no" title="function not covered" >function(stateName) {</span>
 <span class="cstat-no" title="statement not covered" >        return _this.current.name === stateName;</span>
       };
     })(this);
-<span class="cstat-no" title="statement not covered" >    this.expectTransitionTo = (<span class="fstat-no" title="function not covered" >function(_this) {</span></span>
-<span class="cstat-no" title="statement not covered" >      return <span class="fstat-no" title="function not covered" >function(stateName) {</span></span>
+    this.expectTransitionTo = (function(_this) {
+      return <span class="fstat-no" title="function not covered" >function(stateName) {</span>
 <span class="cstat-no" title="statement not covered" >        return _this.expectedTransitions.push(stateName);</span>
       };
     })(this);
-<span class="cstat-no" title="statement not covered" >    return this.ensureAllTransitionsHappened = (<span class="fstat-no" title="function not covered" >function(_this) {</span></span>
-<span class="cstat-no" title="statement not covered" >      return <span class="fstat-no" title="function not covered" >function() {</span></span>
+    return this.ensureAllTransitionsHappened = (function(_this) {
+      return <span class="fstat-no" title="function not covered" >function() {</span>
 <span class="cstat-no" title="statement not covered" >        if (_this.expectedTransitions.length &gt; 0) {</span>
 <span class="cstat-no" title="statement not covered" >          throw Error("Not all transitions happened!");</span>
         }
@@ -368,7 +368,7 @@ angular.module('stateMock').service("$state", [
 
 </div>
 <div class="footer">
-    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Dec 30 2014 12:54:02 GMT-0200 (BRST)</div>
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Dec 31 2014 16:22:16 GMT-0200 (BRST)</div>
 </div>
 
 <script src="../../../prettify.js"></script>
