@@ -24,38 +24,67 @@ angular.module 'RandomicApp.controllers'
       # =============================================
       # Methods
       # =============================================
-      $scope.getNow = ->
-        now = if $window.Date.now then $window.Date.now() else new $window.Date().getTime()
-        return now
+      
 
-      $scope.calcRandomCycleNumber = (timestampStringArray)->
-        timestampStringArray or= $scope.getNow()
-        calcRandomCycleNumber  = 0
+      $scope.calcTimestampSum = (timestampStringArray)->
+        timestampStringArray or= _.now().toString().split("")
+        timestampSum           = 0
 
         for timestampNumber in timestampStringArray
-          timestampNumber       = parseInt timestampNumber, 10
-          calcRandomCycleNumber += timestampNumber
+          timestampNumber  = parseInt timestampNumber, 10
+          timestampSum    += timestampNumber
 
-        return calcRandomCycleNumber
+        return timestampSum
 
 
-      $scope.getRandomItem = (randomCycleNumber, timestampFunction) ->
-        randomCycleNumber or= $scope.calcRandomCycleNumber()
-        timestampFunction or= $scope.getNow
-        randomItem        = null
+      $scope.getRandomIndex = () ->
+        randomCycleNumber = $scope.calcTimestampSum()
         i                 = 0
-        j                 = 0
 
         while i < randomCycleNumber
-          for currentItem, j in $scope.items
-
-            isDivsibleByIndex = timestampFunction() % j is 0
-            if isDivsibleByIndex then randomItem = currentItem
-
+          randomIndex = _.random(0, $scope.items.length - 1)
           i++
 
-        $scope.randomItems.push randomItem
-        return randomItem
+        return randomIndex
+
+
+      $scope.validateRandomItem = (itemText) ->
+        pluckRandomItems = _.pluck $scope.randomItems, 'items'
+        randomItems      = _.flatten pluckRandomItems
+
+        isDuplicateItem = _.contains(randomItems, itemText)
+        isValid         = $scope.randomForm.allowDuplicateItem or not isDuplicateItem
+
+        return isValid
+
+      $scope.getRandomItemObj = ->
+        randomIndex       = $scope.getRandomIndex()
+        randomItem        = $scope.items[randomIndex]
+        isValidRandomItem = $scope.validateRandomItem(randomItem.text)
+        randomItemObj     =
+          item  : randomItem
+          index : randomIndex
+
+        if isValidRandomItem then randomItemObj else $scope.getRandomItemObj()
+
+      $scope.getRandomItems = ->
+        localRandomItems = []
+        i = 0
+
+        while i < $scope.randomForm.numberOfItems
+          randomItem = $scope.getRandomItemObj().item
+          localRandomItems.push randomItem.text
+          i++
+
+        localRandomItems = 
+          items : localRandomItems
+          text  : _.toSentence(localRandomItems, ', ', ' and ')
+
+        $scope.addRandomItem localRandomItems
+        return localRandomItems
+
+      $scope.addRandomItem = (item) ->
+        if item?.items and item.text then $scope.randomItems.push item else no
 
       $scope.resetRandomItems = ->
         $scope.randomItems = []
