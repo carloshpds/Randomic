@@ -28,6 +28,8 @@ describe 'Controller: RandomController', ()->
       $scope: $scope
       $state: _$state_
 
+    _.mixin(_.string.exports())
+
 
   # =============================================
   # Tests

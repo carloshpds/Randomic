@@ -123,7 +123,7 @@ paths =
         'dev/libs/angular-mocks/angular-mocks.js',
         'dev/libs/angular-sanitize/angular-sanitize.js',
         'dev/libs/angular-bootstrap/ui-bootstrap-tpls.js',
-        'dev/libs/underscore-string.js',
+        'dev/libs/underscore-string.min.js',
         'dev/libs/momentjs/min/moment-with-langs.js',
         'dev/libs/quick-ng-repeat/quick-ng-repeat.js',
         'dev/scripts/main/scripts/app.js',
