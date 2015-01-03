@@ -43,7 +43,7 @@ angular.module('RandomicApp', [
   # =============================================
   .run([ () ->
 
-    # Import underscore-string to underscore
+    # Import underscore-string into underscore
     # =================================
     _.mixin(_.string.exports())
 

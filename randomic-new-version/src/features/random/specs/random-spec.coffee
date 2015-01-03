@@ -99,8 +99,9 @@ describe 'Controller: RandomController', ()->
 
 
   describe 'Method: $scope.getRandomItemObj', ->
-    it 'Should be sure that the random item is equal to a item from $scope.items choosen by a randomIndex ', ->
+    it 'Should be sure that the random item is equal to a item from $scope.items choosen by a randomIndex when allows duplicate item', ->
 
+      $scope.randomForm.allowDuplicateItem = yes
       $scope.items = [
         {text: 'item1'}
         {text: 'item2'}
@@ -110,10 +111,26 @@ describe 'Controller: RandomController', ()->
 
       randomItemObj = $scope.getRandomItemObj()
 
-      if $scope.randomForm.allowDuplicateItem
-        expect(randomItemObj.item).toEqual $scope.items[randomItemObj.index]
-      else
-        expect(randomItemObj.item).toEqual $scope.noDuplicateItems[randomItemObj.index]
+      expect(randomItemObj.item).toEqual $scope.items[randomItemObj.index]
+
+    it 'Should be sure that the random item is equal to a item from $scope.noDuplicateItems choosen by a randomIndex when NOT allows duplicate item', ->
+
+      $scope.randomForm.allowDuplicateItem = no
+      $scope.items = [
+        {text: 'item1'}
+        {text: 'item2'}
+        {text: 'item3'}
+      ]
+      $scope.$digest()
+
+      $scope.updateNoDuplicateItems()
+      oldNoDuplicateItems    = angular.copy($scope.noDuplicateItems)
+
+      randomItemObj = $scope.getRandomItemObj()
+
+     
+      expect($scope.noDuplicateItems.length).toEqual oldNoDuplicateItems.length - 1
+      expect(randomItemObj.item.text).toEqual  oldNoDuplicateItems[randomItemObj.index].text
 
 
   describe 'Method: $scope.addRandomItem', ->
@@ -136,6 +153,7 @@ describe 'Controller: RandomController', ()->
         { items: null, text: '' }
         { text: 'item1'         } 
         { attr: 'X'}
+        null
       ]
 
       $scope.$digest()
@@ -165,6 +183,55 @@ describe 'Controller: RandomController', ()->
       randomItems = $scope.getRandomItems()
 
       expect(randomItems.items.length).toEqual 4
+
+    it 'Should be a not valid run cause all items have been choosen already and not allows duplicate items', ->
+      $scope.randomForm.numberOfItems      = 6
+      $scope.randomForm.allowDuplicateItem = no
+
+      $scope.$digest()
+
+      $scope.getRandomItems()
+      $scope.getRandomItems()
+
+
+
+      expect($scope.validRun).toBeFalsy() 
+
+  describe '$scope.getAllGroupedByNItems', ->
+    beforeEach ->
+      $scope.items = [
+        {text: 'item1'}
+        {text: 'item2'}
+        {text: 'item3'}
+        {text: 'item4'}
+        {text: 'item5'}
+        {text: 'item6'}
+        {text: 'item7'}
+      ]
+
+    it 'Should get all items grouped by floor of $scope.random.numberOfItems when allows duplicate items', ->
+      $scope.randomForm.numberOfItems      = 4
+      $scope.randomForm.allowDuplicateItem = yes
+
+      groups = $scope.getAllGroupedByNItems()
+
+      expect(groups.length).toEqual 1
+      expect(groups[0].items.length).toEqual 4
+
+    it 'Should get all items grouped by floor of $scope.random.numberOfItems when NOT allows duplicate items', ->
+      $scope.randomForm.numberOfItems      = 2
+      $scope.randomForm.allowDuplicateItem = no
+
+      groups = $scope.getAllGroupedByNItems()
+
+      expect(groups.length).toEqual 3
+      for group in groups then expect(group.items.length).toEqual 2
+
+
+
+
+      
+    
 
       
       

@@ -75,7 +75,13 @@ angular.module 'RandomicApp.controllers'
 
       $scope.getRandomItemObj = ->
         randomIndex       = $scope.getRandomIndex()
-        randomItem        = if $scope.randomForm.allowDuplicateItem then $scope.items[randomIndex] else $scope.noDuplicateItems[randomIndex]
+        
+        if $scope.randomForm.allowDuplicateItem
+          randomItem  =  $scope.items[randomIndex] 
+        else 
+          randomItem  =  $scope.noDuplicateItems[randomIndex]
+          $scope.noDuplicateItems.splice randomIndex, 1
+
         randomItemObj     =
           item  : randomItem
           index : randomIndex
@@ -91,6 +97,9 @@ angular.module 'RandomicApp.controllers'
         i                  = 0
         $scope.validRun    = $scope.randomForm.allowDuplicateItem or $scope.noDuplicateItems.length > 0
 
+        if not $scope.randomForm.allowDuplicateItem  and numberOfItems > $scope.noDuplicateItems.length then numberOfItems = $scope.noDuplicateItems.length
+
+
         if $scope.validRun
           while i < numberOfItems
             randomItem = $scope.getRandomItemObj().item
@@ -104,6 +113,24 @@ angular.module 'RandomicApp.controllers'
           $scope.addRandomItem localRandomItems
 
         return localRandomItems
+
+      $scope.getAllGroupedByNItems = ->
+        $scope.updateNoDuplicateItems()
+        numberOfGroups = 0
+        i              = 0
+        groups         = []
+
+        if $scope.randomForm.allowDuplicateItem
+          numberOfGroups = $window.Math.floor( $scope.items.length / $scope.randomForm.numberOfItems )
+        else
+          numberOfGroups = $window.Math.floor( $scope.noDuplicateItems.length / $scope.randomForm.numberOfItems )
+
+        while i < numberOfGroups
+          groups.push $scope.getRandomItems()
+          i++
+
+        return groups
+
 
       $scope.addRandomItem = (item) ->
         if item?.items and item.text then $scope.randomItems.push item else no
