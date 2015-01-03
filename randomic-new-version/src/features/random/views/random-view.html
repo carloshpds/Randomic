@@ -32,9 +32,9 @@
             'col-md-4' : randomItems.length > 0,
             'col-sm-4' : randomItems.length > 0,
             }">
-          <button class="btn btn-default form-control animated fadeInLeft" ng-show="items.length > 0"
+          <button class="form-control btn btn-default  animated fadeInLeft" ng-show="items.length > 0"
             ng-click="getRandomItems()"
-            ng-disabled="items.length === 0" >
+            ng-disabled="items.length === 0 || !validRun" >
             Give me <span ng-bind="randomForm.numberOfItems"></span>
           </button>
         </div>
@@ -47,7 +47,7 @@
             'col-sm-4' : randomItems.length > 0,
             }">
           <button class="btn btn-primary form-control animated fadeInRight" ng-show="items.length > 0"
-            ng-disabled="items.length === 0">
+            ng-disabled="items.length === 0 || !validRun">
             Give me all grouped by <span ng-bind="randomForm.numberOfItems"></span>
             <span ng-show="randomForm.numberOfItems === 1">item</span> <span ng-show="randomForm.numberOfItems > 1">items</span>
           </button> 
@@ -69,16 +69,32 @@
         </div>
         
         <!-- Advanced options -->
-        <div class="row hide">
-          <div class="col-md-2">
-            <label>
-              <input type="checkbox" ng-model="randomForm.allowDuplicateItem"> allow duplicate item
-            </label>
-          </div>
+        <div class="row" >
+          
+          <div class="col-md-12 col-sm-12 text-center">
+            <button class="btn btn-link form-control" ng-show="items.length > 0" 
+              ng-click="viewUtils.showAdvancedOptions = !viewUtils.showAdvancedOptions">
 
-          <div class="col-md-2">
-            <label >number of items</label>
-            <input type="number" ng-model="randomForm.numberOfItems" name="numberOfItems" class="form-control"> 
+              <span class="glyphicon animated fadeInDown" 
+                ng-class="{
+                  'glyphicon-chevron-up'   : viewUtils.showAdvancedOptions,
+                  'glyphicon-chevron-down' : !viewUtils.showAdvancedOptions
+                }"></span>
+
+            </button>
+          </div>
+          
+          <div class="row" >
+            <div class="col-md-2 col-md-offset-4 col-sm-2 col-sm-offset-4 animated fadeInDown" ng-show="viewUtils.showAdvancedOptions">
+              <label>
+                <input type="checkbox" ng-model="randomForm.allowDuplicateItem"> allow duplicate item
+              </label>
+            </div>
+
+            <div class="col-md-2 col-sm-2 animated fadeInDown" ng-show="viewUtils.showAdvancedOptions">
+              <label >number of items</label>
+              <input type="number" ng-model="randomForm.numberOfItems" name="numberOfItems" class="form-control"> 
+            </div>
           </div>
         </div>
       </form>

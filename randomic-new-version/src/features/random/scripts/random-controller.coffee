@@ -14,17 +14,34 @@ angular.module 'RandomicApp.controllers'
       # =============================================
       # Attributes
       # =============================================
-      $scope.items       = []
-      $scope.randomItems = []
+      $scope.items             = []
+      $scope.noDuplicateItems  = []
+      $scope.randomItems       = []
 
       $scope.randomForm =
         allowDuplicateItem : no
         numberOfItems      : 1
 
+      $scope.viewUtils =
+        showAdvancedOptions : no
+
+      $scope.validRun = yes
+
       # =============================================
       # Methods
       # =============================================
-      
+      $scope.extractOnlyRandomItems = ->
+        pluckRandomItems = _.pluck $scope.randomItems, 'items'
+        randomItems      = _.flatten pluckRandomItems
+
+        return randomItems
+
+      $scope.updateNoDuplicateItems = ->
+        items         = _.pluck angular.copy($scope.items), 'text'
+        randomItems   = $scope.extractOnlyRandomItems()
+
+        items                   = _.filter items, (item)-> return not _.contains(randomItems, item)
+        $scope.noDuplicateItems = _.map(items, (item)-> return text: item)
 
       $scope.calcTimestampSum = (timestampStringArray)->
         timestampStringArray or= _.now().toString().split("")
@@ -39,19 +56,18 @@ angular.module 'RandomicApp.controllers'
 
       $scope.getRandomIndex = () ->
         randomCycleNumber = $scope.calcTimestampSum()
+        max               = if $scope.randomForm.allowDuplicateItem then $scope.items.length - 1 else $scope.noDuplicateItems.length - 1
         i                 = 0
 
         while i < randomCycleNumber
-          randomIndex = _.random(0, $scope.items.length - 1)
+          randomIndex = _.random(0, max)
           i++
 
         return randomIndex
 
 
       $scope.validateRandomItem = (itemText) ->
-        pluckRandomItems = _.pluck $scope.randomItems, 'items'
-        randomItems      = _.flatten pluckRandomItems
-
+        randomItems     = $scope.extractOnlyRandomItems()
         isDuplicateItem = _.contains(randomItems, itemText)
         isValid         = $scope.randomForm.allowDuplicateItem or not isDuplicateItem
 
@@ -59,28 +75,34 @@ angular.module 'RandomicApp.controllers'
 
       $scope.getRandomItemObj = ->
         randomIndex       = $scope.getRandomIndex()
-        randomItem        = $scope.items[randomIndex]
-        isValidRandomItem = $scope.validateRandomItem(randomItem.text)
+        randomItem        = if $scope.randomForm.allowDuplicateItem then $scope.items[randomIndex] else $scope.noDuplicateItems[randomIndex]
         randomItemObj     =
           item  : randomItem
           index : randomIndex
 
-        if isValidRandomItem then randomItemObj else $scope.getRandomItemObj()
+        return randomItemObj
 
-      $scope.getRandomItems = ->
-        localRandomItems = []
-        i = 0
+      $scope.getRandomItems = (numberOfItems) ->
+        $scope.updateNoDuplicateItems()
 
-        while i < $scope.randomForm.numberOfItems
-          randomItem = $scope.getRandomItemObj().item
-          localRandomItems.push randomItem.text
-          i++
 
-        localRandomItems = 
-          items : localRandomItems
-          text  : _.toSentence(localRandomItems, ', ', ' and ')
+        numberOfItems    or= $scope.randomForm.numberOfItems
+        localRandomItems   = []
+        i                  = 0
+        $scope.validRun    = $scope.randomForm.allowDuplicateItem or $scope.noDuplicateItems.length > 0
 
-        $scope.addRandomItem localRandomItems
+        if $scope.validRun
+          while i < numberOfItems
+            randomItem = $scope.getRandomItemObj().item
+            localRandomItems.push randomItem.text
+            i++
+
+          localRandomItems = 
+            items : localRandomItems
+            text  : _.toSentence(localRandomItems, ', ', ' and ')
+
+          $scope.addRandomItem localRandomItems
+
         return localRandomItems
 
       $scope.addRandomItem = (item) ->
@@ -88,6 +110,12 @@ angular.module 'RandomicApp.controllers'
 
       $scope.resetRandomItems = ->
         $scope.randomItems = []
+
+
+      # =============================================
+      # Events
+      # =============================================
+
 
       # =============================================
       # Initialize

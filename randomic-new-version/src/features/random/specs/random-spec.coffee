@@ -110,7 +110,10 @@ describe 'Controller: RandomController', ()->
 
       randomItemObj = $scope.getRandomItemObj()
 
-      expect(randomItemObj.item).toEqual $scope.items[randomItemObj.index]
+      if $scope.randomForm.allowDuplicateItem
+        expect(randomItemObj.item).toEqual $scope.items[randomItemObj.index]
+      else
+        expect(randomItemObj.item).toEqual $scope.noDuplicateItems[randomItemObj.index]
 
 
   describe 'Method: $scope.addRandomItem', ->
