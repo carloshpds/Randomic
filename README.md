@@ -2,7 +2,10 @@
 # English
 
 ![Randomic ](randomic-logo.png "Randomic logo")
-A friendly user interface to extract random items (based on [underscore random method](http://underscorejs.org/#random) and timestamp) from a simple list.
+
+<br />
+> A friendly user interface to extract random items (based on [underscore random method](http://underscorejs.org/#random) and timestamp) from a simple list.
+
 
 ## Installation
 ```bash
