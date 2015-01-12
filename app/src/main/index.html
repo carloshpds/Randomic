@@ -1,21 +1,29 @@
 <!DOCTYPE html>
 <html ng-app="RandomicApp">
   <head>
-    <!-- <meta charset="utf-8"> -->
+
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
-    <title>RandomicApp</title>
+    <title>My Angular Omakase</title>
     
-    <link href="styles/vendors.min.css"    rel="stylesheet">
-    <link href="styles/app.min.css"        rel="stylesheet">
+
+    <!-- build:css styles/app.min.css -->
+    <link href="styles/vendors.css"    rel="stylesheet">
+    <link href="styles/app.css"        rel="stylesheet">
+    <!-- endbuild -->
 
   </head>
-  <body>
+  <body class="animated fadeIn">
 
     <!--======================-->
     <!-- Fb-root Content      -->
     <!--======================-->
     <div id="fb-root"></div>
+    
+    <!--======================-->
+    <!-- Fork-me Component    -->
+    <!--======================-->
+    <div fork-me-on-github href="https://github.com/TimeoutZero/ngFeatures" type="circle"></div>
 
     <!--======================-->
     <!-- Application Content  -->
@@ -28,22 +36,24 @@
     <!--======================-->
 
     <!--==========  Vendors  ============-->
-    <!-- build:js -->
-    <!-- include:js(list:dev/resources/include-source-list/vendors-scripts.txt) -->
+    <!-- build:js scripts/vendors.min.js -->
+    <!-- include:js(list:builds/dev/resources/include-source-list/vendors-scripts.txt) -->
     <!-- endbuild -->
 
 
     <!--==========    App    ============-->
+    <!-- build:js scripts/app.min.js -->
 
     <!-- Main -->
-    <!-- include:js(list:dev/resources/include-source-list/main-app-scripts.txt) -->
+    <!-- include:js(list:builds/dev/resources/include-source-list/main-app-scripts.txt) -->
 
     <!-- Features -->
-    <!-- include:js(list:dev/resources/include-source-list/features-scripts.txt) -->
+    <!-- include:js(list:builds/dev/resources/include-source-list/features-scripts.txt) -->
 
     <!-- Components -->
-    <!-- include:js(list:dev/resources/include-source-list/components-scripts.txt) -->
+    <!-- include:js(list:builds/dev/resources/include-source-list/components-scripts.txt) -->
 
+    <!-- endbuild -->
 
   </body>
 </html>
