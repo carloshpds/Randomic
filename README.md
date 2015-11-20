@@ -1,7 +1,7 @@
 
 # English
 
-![Randomic ](randomic-logo.png "Randomic logo")
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ![Randomic ](randomic-logo.png "Randomic logo")
 
 <br />
 > A friendly user interface to extract random items (based on [underscore random method](http://underscorejs.org/#random) and timestamp) from a simple list.
