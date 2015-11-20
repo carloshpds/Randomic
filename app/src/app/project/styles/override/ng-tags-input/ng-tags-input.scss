@@ -1,0 +1,14 @@
+
+.tags{
+  box-shadow: none !important;
+  color: #000000;
+
+  &, &.focused{
+    @extend .rdm-input;
+    border: none !important;
+  }
+
+  .tag-item {
+    color: #000000 !important;
+  }
+}

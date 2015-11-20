@@ -1,2 +1,0 @@
-scripts/features/random/scripts/random-controller.js
-scripts/features/random/scripts/random-routes.js

@@ -1,0 +1,24 @@
+
+
+// =============================================
+// Global
+// =============================================
+.row{
+  margin-left  : 0;
+  margin-right : 0;
+}
+
+.form-control{
+  &:focus{
+    box-shadow: none;
+  }
+}
+
+.btn, .btn:focus, .btn:active:focus{
+  outline: 0;
+
+  .btn-default.form-control:focus{
+    box-shadow: 2px 2px 2px rgba(0,0,0,.3);
+  }
+
+}
