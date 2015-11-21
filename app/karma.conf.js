@@ -1,90 +1,116 @@
-// Karma configuration
-// http://karma-runner.github.io/0.12/config/configuration-file.html
-// Generated on 2014-06-03 using
-// generator-karma 0.8.1
+'use strict';
 
 module.exports = function(config) {
-  config.set({
-    // enable / disable watching file and executing tests whenever any file changes
-    autoWatch: false,
 
-    // base path, that will be used to resolve files and exclude
-    basePath: '',
+  var configuration = {
+    autoWatch : false,
 
-    // testing framework to use (jasmine/mocha/qunit/...)
+    logLevel: config.LOG_ERROR,
+
     frameworks: ['jasmine'],
 
-    // list of files is defined on paths.json as spec.js.sourceFiles
-    // files: [],
-
-    // list of files / patterns to exclude
-    exclude: [
+    files : [
+      "bower_components/**/*.js",
+      "builds/dev/serve/app/**/*.js"
     ],
 
-    // web server port
-    port: 8080,
 
-    // Start these browsers, currently available:
-    // - Chrome
-    // - ChromeCanary
-    // - Firefox
-    // - Opera
-    // - Safari (only Mac)
-    // - PhantomJS
-    // - IE (only Windows)
-    browsers: [
-      'Chrome'
-    ],
+    phantomjsLauncher: {
+      debug: true,
 
-    // Preprocessors
-    preprocessors: {
-      'builds/dev/views/**/*.html' : ['ng-html2js'],
-      'builds/dev/scripts/**/*.js' : ['coverage']
+      // Have phantomjs exit if a ResourceError is encountered (useful if karma exits without killing phantom)
+      exitOnResourceError: true
     },
 
-    // HTML to JS
-    // ngHtml2JsPreprocessor: {
-    //   stripPrefix : 'builds/dev/'
-    // },
+    // reporter options
+    nyanReporter: {
+      // suppress the error report at the end of the test run
+      suppressErrorReport: false,
 
-    // Reporters - Generates the Coverage
+      // increase the number of rainbow lines displayed
+      // enforced min = 4, enforced max = terminal height - 1
+      numberOfRainbowLines : 4 // default is 4
+    },
+
+    dhtmlReporter: {
+      'outputFile' : '/tests/dhtmlReport.html',
+      'exclusiveSections': true,
+      'openReportInBrowser': false
+    },
+
+    ngHtml2JsPreprocessor: {
+      stripPrefix: 'src/',
+      moduleName: 'karma.templates'
+      // moduleName: function (htmlPath, originalPath) {
+      //   console.log('Karma: ', htmlPath);
+      //   return 'karma.templates';
+      // }
+    },
+
+    browsers : [
+      // 'PhantomJS'
+      // 'Chrome'
+    ],
+
+    plugins : [
+      'karma-phantomjs-launcher',
+      'karma-jasmine',
+      'karma-ng-html2js-preprocessor',
+      "karma-dhtml-reporter",
+      'karma-coverage',
+      "karma-chrome-launcher",
+      // 'karma-mocha-reporter',
+      'karma-nyan-reporter'
+    ],
+
+    preprocessors: {
+      'src/**/*.html': ['ng-html2js'],
+      'builds/dev/serve/{app,components}/**/!(*spec|*mock).js' : ['coverage']
+    },
+
+    // generates the coverage
     reporters: [
-      'progress',
-      'coverage'
+      // 'dots',
+      'nyan',
+      'coverage',
+      // 'html',
+      // 'mocha',
+      'DHTML'
     ],
 
     // Output coverage file
     coverageReporter: {
-      type : 'lcov',
-      subdir: 'report-lcov',
-
+      type   : 'lcov',
+      subdir : 'report-lcov',
       // output path
-      dir : 'src/main/specs/coverage/'
+      dir : 'coverage/',
+      instrumenterOptions: {
+        istanbul: { noCompact: true }
+      }
+
     },
 
-    // Which plugins to enable
-    plugins: [
-      'karma-jasmine',
-      'karma-chrome-launcher',
-      'karma-ng-html2js-preprocessor',
-      'karma-coverage'
-    ],
+    mochaReporter: {
+      output: 'minimal'
+    }
 
-    // Continuous Integration mode
-    // if true, it capture browsers, run tests and exit
-    singleRun: false,
+  };
 
-    colors: true,
 
-    // level of logging
-    // possible values: LOG_DISABLE || LOG_ERROR || LOG_WARN || LOG_INFO || LOG_DEBUG
-    logLevel: config.LOG_ERROR,
 
-    // Uncomment the following lines if you are using grunt's server to run the tests
-    // proxies: {
-    //   '/': 'http://localhost:9000/'
-    // },
-    // URL root prevent conflicts with the site root
-    // urlRoot: '_karma_'
-  });
+  // This block is needed to execute Chrome on Travis
+  // If you ever plan to use Chrome and Travis, you can keep it
+  // If not, you can safely remove it
+  // https://github.com/karma-runner/karma/issues/1144#issuecomment-53633076
+  if(configuration.browsers[0] === 'Chrome' && process.env.TRAVIS) {
+    configuration.customLaunchers = {
+      'chrome-travis-ci': {
+        base: 'Chrome',
+        flags: ['--no-sandbox']
+      }
+    };
+    configuration.browsers = ['chrome-travis-ci'];
+  }
+
+  config.set(configuration);
 };
