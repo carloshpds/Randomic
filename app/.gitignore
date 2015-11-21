@@ -6,4 +6,5 @@ bower_components
 ./**/*.DS_Store
 .sass-cache
 src/main/specs/coverage/
+coverage/
 
