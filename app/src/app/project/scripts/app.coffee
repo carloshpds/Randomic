@@ -41,11 +41,11 @@ angular.module('RandomicApp', [
   # =============================================
   # Initialize
   # =============================================
-  .run([ () ->
+  .run ($window) ->
 
     # Import underscore-string into underscore
     # =================================
-    _.mixin(_.string.exports())
+    _.mixin($window.s.exports())
 
     # Change Moment relative time
     moment.lang 'pt-br',
@@ -66,7 +66,6 @@ angular.module('RandomicApp', [
 
     moment.lang('pt-br')
 
-  ])
 
   # =============================================
   # httpProvider Config

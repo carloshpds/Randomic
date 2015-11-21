@@ -22,13 +22,13 @@ describe 'Controller: RandomController', ()->
   # =============================================
   # Inject dependencies
   # =============================================
-  beforeEach inject ($controller, $rootScope, _$state_) ->
+  beforeEach inject ($controller, $rootScope, _$state_, $window) ->
     $scope            = $rootScope.$new()
     RandomController  = $controller 'RandomController',
       $scope: $scope
       $state: _$state_
 
-    _.mixin(_.string.exports())
+    _.mixin(_.mixin($window.s.exports()))
 
 
   # =============================================
@@ -37,9 +37,9 @@ describe 'Controller: RandomController', ()->
   describe 'Method: $scope.resetRandomItems', ->
     it 'Should reset randomItems array', ->
       $scope.randomItems = ['randomItem1', 'randomItem2', 'randomItem3']
-      
+
       $scope.$digest()
-      
+
       $scope.resetRandomItems()
 
       expect($scope.randomItems.length).toEqual 0
@@ -51,7 +51,7 @@ describe 'Controller: RandomController', ()->
       randomCycleNumber = $scope.calcTimestampSum(timeStamp)
 
       $scope.$digest()
-      
+
       expect(randomCycleNumber).toEqual 18
 
 
@@ -63,36 +63,36 @@ describe 'Controller: RandomController', ()->
 
     it 'Should return a valid for a not duplicate item when allowDuplicateItem flag is equal to false', ->
       $scope.randomForm.allowDuplicateItem = no
-      
+
       $scope.$digest()
-      
+
       isValidRandomItem = $scope.validateRandomItem('randomItem3')
 
       expect(isValidRandomItem).toBeTruthy()
 
     it 'Should return invalid for a duplicate random item when allowDuplicateItem flag is equal to false', ->
       $scope.randomForm.allowDuplicateItem = no
-      
+
       $scope.$digest()
-      
+
       isValidRandomItem = $scope.validateRandomItem('randomItem2')
 
       expect(isValidRandomItem).toBeFalsy()
 
     it 'Should return a valid for a not duplicate item when allowDuplicateItem flag is equal to true', ->
       $scope.randomForm.allowDuplicateItem = yes
-      
+
       $scope.$digest()
-      
+
       isValidRandomItem = $scope.validateRandomItem('randomItem3')
 
       expect(isValidRandomItem).toBeTruthy()
 
     it 'Should return valid for a duplicate random item when allowDuplicateItem flag is equal to true', ->
       $scope.randomForm.allowDuplicateItem = yes
-      
+
       $scope.$digest()
-      
+
       isValidRandomItem = $scope.validateRandomItem('randomItem2')
 
       expect(isValidRandomItem).toBeTruthy()
@@ -128,7 +128,7 @@ describe 'Controller: RandomController', ()->
 
       randomItemObj = $scope.getRandomItemObj()
 
-     
+
       expect($scope.noDuplicateItems.length).toEqual oldNoDuplicateItems.length - 1
       expect(randomItemObj.item.text).toEqual  oldNoDuplicateItems[randomItemObj.index].text
 
@@ -151,7 +151,7 @@ describe 'Controller: RandomController', ()->
     it 'Should NOT add items with wrong pattern', ->
       invalidItems = [
         { items: null, text: '' }
-        { text: 'item1'         } 
+        { text: 'item1'         }
         { attr: 'X'}
         null
       ]
@@ -163,9 +163,9 @@ describe 'Controller: RandomController', ()->
 
       expect($scope.randomItems.length).toEqual 0
 
-  
+
   describe 'Method: $scope.getRandomItems', ->
-    
+
     beforeEach ->
       $scope.items = [
         {text: 'item1'}
@@ -195,7 +195,7 @@ describe 'Controller: RandomController', ()->
 
 
 
-      expect($scope.validRun).toBeFalsy() 
+      expect($scope.validRun).toBeFalsy()
 
   describe '$scope.getAllGroupedByNItems', ->
     beforeEach ->
@@ -230,26 +230,26 @@ describe 'Controller: RandomController', ()->
 
 
 
-      
-    
-
-      
-      
-    
-      
-    
-
-      
-
-    
 
 
-      
-    
 
-    
 
-      
-    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

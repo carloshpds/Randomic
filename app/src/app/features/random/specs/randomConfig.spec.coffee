@@ -20,20 +20,19 @@ describe 'Config: RandomRoutes', ()->
   # =============================================
   # Inject dependencies
   # =============================================
-  beforeEach inject (_$state_) ->
+  beforeEach inject (_$state_, $window) ->
     $state = _$state_
 
-    _.mixin(_.string.exports())
+    _.mixin($window.s.exports())
 
   describe '$state', ->
     it 'should be sure of the state name', ->
-      
+
       stateName = 'random'
-  
+
       $state.expectTransitionTo stateName
       $state.go stateName
       allTransitionsHappened = $state.ensureAllTransitionsHappened()
 
       expect($state.current.name).toEqual stateName
-      expect(allTransitionsHappened).toBeTruthy() 
-      
+      expect(allTransitionsHappened).toBeTruthy()
