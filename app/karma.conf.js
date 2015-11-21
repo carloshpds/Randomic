@@ -5,7 +5,7 @@ module.exports = function(config) {
   var configuration = {
     autoWatch : false,
 
-    logLevel: config.LOG_ERROR,
+    logLevel: config.LOG_INFO,
 
     frameworks: ['jasmine'],
 
