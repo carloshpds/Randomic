@@ -16,17 +16,20 @@ describe 'Controller: RandomController', ()->
   # =============================================
   # Variables
   # =============================================
-  $scope            = null
-  RandomController  = null
+  $scope               = null
+  RandomController     = null
+  randomicStorageKeys  = null
 
   # =============================================
   # Inject dependencies
   # =============================================
-  beforeEach inject ($controller, $rootScope, _$state_, $window) ->
+  beforeEach inject ($controller, $rootScope, _$state_, $window, _randomicStorageKeys_) ->
     $scope            = $rootScope.$new()
+    randomicStorageKeys   = _randomicStorageKeys_
     RandomController  = $controller 'RandomController',
-      $scope: $scope
-      $state: _$state_
+      $scope          : $scope
+      $state          : _$state_
+      randomicStorageKeys : randomicStorageKeys
 
     _.mixin(_.mixin($window.s.exports()))
 
@@ -226,6 +229,164 @@ describe 'Controller: RandomController', ()->
 
       expect(groups.length).toEqual 3
       for group in groups then expect(group.items.length).toEqual 2
+
+  describe 'Randomic storage, should: ', ->
+
+    ###
+    # Mock values
+    ###
+    localItems = null
+    randomItems = null
+    randomForm  = null
+    validRun    = null
+
+    beforeEach ->
+      localItems   = [
+        {text: 'item1'}
+        {text: 'item2'}
+        {text: 'item3'}
+        {text: 'item4'}
+        {text: 'item5'}
+        {text: 'item6'}
+        {text: 'item7'}
+      ]
+
+      randomItems = [
+        {items: [], text: 'random1'}
+        {items: [], text: 'random2'}
+        {items: [], text: 'random3'}
+      ]
+
+      randomForm =
+        allowDuplicateItem : no
+        numberOfItems      : 1
+        remember           : yes
+
+      validRun = yes
+
+
+    afterEach ->
+      $scope.resetStorage()
+
+    it 'Save options and lists', ->
+      ###
+      # Scope values
+      ###
+      $scope.items       = localItems
+      $scope.randomItems = randomItems
+      $scope.randomForm  = randomForm
+      $scope.validRun    = validRun
+
+      ###
+      # Execute
+      ###
+      $scope.$digest()
+      $scope.saveInfoInStorage()
+
+      ###
+      # Get storage values
+      ###
+      randomicStorage = simpleStorage.get(randomicStorageKeys.INFO_KEY)
+
+
+      ###
+      # Asserts
+      ###
+      expect(randomicStorage).toEqual jasmine.any(Object)
+
+      expect(randomicStorage.items).toEqual jasmine.any(Array)
+      expect(randomicStorage.items.length).toEqual localItems.length
+
+      expect(randomicStorage.randomItems).toEqual jasmine.any(Array)
+      expect(randomicStorage.randomItems.length).toEqual 3
+
+      expect(randomicStorage.randomForm).toEqual jasmine.any(Object)
+      expect(randomicStorage.randomForm.allowDuplicateItem).toEqual randomForm.allowDuplicateItem
+      expect(randomicStorage.randomForm.numberOfItems).toEqual randomForm.numberOfItems
+      expect(randomicStorage.randomForm.remember).toEqual randomForm.remember
+
+      expect(randomicStorage.validRun).toEqual validRun
+
+
+    it 'Restore storage info', ->
+      ###
+      # Scope values
+      ###
+      $scope.items       = localItems
+      $scope.randomItems = randomItems
+      $scope.randomForm  = randomForm
+      $scope.validRun    = validRun
+
+      ###
+      # Save
+      ###
+      $scope.$digest()
+      $scope.saveInfoInStorage()
+
+
+      ###
+      # Changing scope values
+      ###
+      $scope.items       = []
+      $scope.randomItems = []
+      $scope.randomForm  = []
+      $scope.validRun    = no
+
+      ###
+      # Restore
+      ###
+      $scope.$digest()
+      $scope.restoreInfoFromStorage()
+
+
+      ###
+      # Asserts
+      ###
+      expect($scope.randomicStorage).toEqual jasmine.any(Object)
+
+      expect($scope.items).toEqual jasmine.any(Array)
+      expect($scope.items.length).toEqual localItems.length
+
+      expect($scope.randomItems).toEqual jasmine.any(Array)
+      expect($scope.randomItems.length).toEqual 3
+
+      expect($scope.randomForm).toEqual jasmine.any(Object)
+      expect($scope.randomForm.allowDuplicateItem).toEqual randomForm.allowDuplicateItem
+      expect($scope.randomForm.numberOfItems).toEqual randomForm.numberOfItems
+      expect($scope.randomForm.remember).toEqual randomForm.remember
+
+      expect($scope.validRun).toEqual validRun
+
+
+    it 'Do not restore info if there is no information in storage', ->
+      ###
+      # Restore
+      ###
+      response = $scope.restoreInfoFromStorage()
+
+
+      ###
+      # Asserts
+      ###
+      expect($scope.randomicStorage).toBeUndefined()
+      expect(response).toBeUndefined()
+
+
+    it 'Reset storage info', ->
+      simpleStorage.set randomicStorageKeys.INFO_KEY,
+        items              : []
+        noDuplicateItems   : []
+        randomItems        : []
+        randomForm         : {}
+        viewUtils          : {}
+        validRun           : yes
+
+
+      $scope.resetStorage()
+
+      randomicStorage = simpleStorage.get(randomicStorageKeys.INFO_KEY)
+
+      expect(randomicStorage).toBeUndefined()
 
 
 
