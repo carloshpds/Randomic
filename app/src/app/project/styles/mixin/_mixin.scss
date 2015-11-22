@@ -31,3 +31,10 @@
     font-weight : 100;
   }
 }
+
+@mixin transition($val) {
+  transition: $val;
+  -moz-transition: $val;
+  -webkit-transition: $val;
+  -o-transition: $val;
+}
