@@ -2,14 +2,25 @@
 
 
 # =============================================
+# Vendors Module
+# =============================================
+angular.module 'RandomicApp.vendors'     , [
+  'ngSanitize'
+  'QuickList'
+  'ngTagsInput'
+  'angular-intro'
+  'ui.bootstrap'
+]
+
+# =============================================
 # Modules
 # =============================================
-angular.module 'RandomicApp.controllers' , []
-angular.module 'RandomicApp.filters'     , []
-angular.module 'RandomicApp.factories'   , []
-angular.module 'RandomicApp.services'    , []
-angular.module 'RandomicApp.constants'   , []
-angular.module 'RandomicApp.directives'  , []
+angular.module 'RandomicApp.controllers' , ['RandomicApp.vendors']
+angular.module 'RandomicApp.filters'     , ['RandomicApp.vendors']
+angular.module 'RandomicApp.factories'   , ['RandomicApp.vendors']
+angular.module 'RandomicApp.services'    , ['RandomicApp.vendors']
+angular.module 'RandomicApp.constants'   , ['RandomicApp.vendors']
+angular.module 'RandomicApp.directives'  , ['RandomicApp.vendors']
 
 
 # =============================================
@@ -29,12 +40,9 @@ angular.module 'RandomicApp.scripts'     , [
 # Main Module
 # =============================================
 angular.module('RandomicApp', [
-  'ngSanitize'
-  'QuickList'
   'ui.router'
-  'ui.bootstrap'
   'RandomicApp.scripts'
-  'ngTagsInput'
+  'RandomicApp.vendors'
 ])
 
 
