@@ -1,5 +1,8 @@
 
-<article id="random-view">
+<article id="random-view"
+  ng-intro-method="startIntro"
+  ng-intro-options="viewUtils.introOptions"
+  >
 
   <section class="bs-header" id="content-header-page">
 
@@ -16,10 +19,16 @@
       <div class="row" name="add-form">
         <div class="col-md-12">
           <tags-input
+            id="truco"
             ng-model="items"
             placeholder="Add new item"
             replace-spaces-with-dashes="false"
-            enable-editing-last-tag="true"></tags-input>
+            enable-editing-last-tag="true"
+
+            on-tag-added="saveInfoInStorage()"
+            on-tag-removed="saveInfoInStorage()"
+
+          ></tags-input>
         </div>
       </div>
 
@@ -36,7 +45,7 @@
             'col-md-4' : randomItems.length > 0,
             'col-sm-4' : randomItems.length > 0,
             }">
-          <button class="form-control btn btn-default  animated fadeInLeft" ng-show="items.length > 0"
+          <button class="form-control btn btn-default  animated fadeIn" ng-show="items.length > 0"
             ng-click="getRandomItems()"
             ng-disabled="items.length === 0 || !randomForm.numberOfItems || randomForm.numberOfItems < 1" >
             Give me <span ng-bind="randomForm.numberOfItems"></span>
@@ -50,7 +59,7 @@
             'col-md-4' : randomItems.length > 0,
             'col-sm-4' : randomItems.length > 0,
             }">
-          <button class="btn btn-primary form-control animated fadeInRight"
+          <button class="btn btn-primary form-control animated fadeIn"
             ng-show="items.length > 0"
             ng-disabled="items.length === 0 || !randomForm.numberOfItems || randomForm.numberOfItems < 1"
             ng-click="getAllGroupedByNItems()">
@@ -83,17 +92,25 @@
               ></span>
           </div>
 
-          <div class="row" >
-            <div class="col-md-2 col-md-offset-4 col-sm-2 col-sm-offset-4 animated fadeInDown" ng-show="viewUtils.showAdvancedOptions">
+          <div class="row" ng-show="viewUtils.showAdvancedOptions">
+            <div class="col-md-2 col-md-offset-3 col-sm-2 col-sm-offset-4" >
               <label>
                 <input type="checkbox" ng-model="randomForm.allowDuplicateItem"> allow duplicate item
               </label>
             </div>
 
-            <div class="col-md-2 col-sm-2 animated fadeInDown" ng-show="viewUtils.showAdvancedOptions">
+            <div class="col-md-2 col-sm-2">
               <label >number of items</label>
               <input type="number" ng-model="randomForm.numberOfItems" name="numberOfItems" class="form-control" min="1">
             </div>
+
+            <div class="col-md-2 col-sm-2">
+              <label >
+                <input type="checkbox" ng-model="randomForm.remember" name="remember">
+                Use local storage
+              </label>
+            </div>
+
           </div>
         </div>
       </form>
@@ -109,16 +126,30 @@
   <section class="container">
 
 
+    <!-- Feedback message -->
+    <div class="row">
+      <div class="col-md-12">
+        <p ng-show="items.length === 0 && randomItems.length === 0"
+          class="empty-message animated flipInX">
+          Add items to your list
+        </p>
 
-    <!-- Loader Section -->
-    <div class="row" ng-if="showLoader">
-      <div class="col-md-12 col-sm-12" style="background: url('styles/img/loader.gif') center center no-repeat; height: 100px; background-size: 100px 100px;">
+        <p ng-show="items.length > 0 && randomItems.length === 0"
+          class="empty-message animated flipInX">
+          Give me some random items :)
+        </p>
+
+        <p ng-show="randomItems.length > 0"
+          class="empty-message animated flipInX">
+          Random Items
+        </p>
       </div>
     </div>
 
+    <!-- Filter -->
     <div class="row margin-top-default animated fadeInDown" ng-show="randomItems.length > 1">
       <div class="col-md-12">
-        <input id="randomItemsFilter" type="text" ng-model="randomItemsFilter" class="form-control" placeholder="Filter items">
+        <input id="randomItemsFilter" type="text" ng-model="randomItemsFilter" class="form-control" placeholder="Filter">
       </div>
     </div>
 
