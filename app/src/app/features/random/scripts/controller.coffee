@@ -25,7 +25,6 @@ angular.module 'RandomicApp.controllers'
 
     $scope.viewUtils =
       showAdvancedOptions : no
-      emptyMessage        : ''
       introOptions        :
         exitOnOverlayClick  : no
         showStepNumbers     : no
