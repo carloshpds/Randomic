@@ -28,6 +28,7 @@ angular.module 'RandomicApp.controllers'
       introOptions        :
         exitOnOverlayClick  : no
         showStepNumbers     : no
+        disableInteraction  : yes
         doneLabel           : 'Ok'
         steps: [
           { element: '.randomic-logo', intro: "Welcome to Randomic, a friendly user interface to extract random items from a simple list." }
