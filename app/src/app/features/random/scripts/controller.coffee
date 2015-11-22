@@ -8,7 +8,7 @@ angular.module 'RandomicApp.controllers'
   # =============================================
   # RandomController
   # =============================================
-  .controller 'RandomController', ($scope, $filter, $window, randomicStorageKeys) ->
+  .controller 'RandomController', ($scope, $filter, $window, randomicStorageKeys, $timeout) ->
 
     # =============================================
     # Attributes
@@ -25,6 +25,15 @@ angular.module 'RandomicApp.controllers'
 
     $scope.viewUtils =
       showAdvancedOptions : no
+      emptyMessage        : ''
+      introOptions        :
+        exitOnOverlayClick  : no
+        showStepNumbers     : no
+        doneLabel           : 'Ok'
+        steps: [
+          { element: '.randomic-logo', intro: "Welcome to Randomic, a friendly user interface to extract random items from a simple list." }
+          { element: '#truco', intro: "You can add items here to start" }
+        ]
 
     $scope.validRun = yes
 
@@ -112,6 +121,7 @@ angular.module 'RandomicApp.controllers'
           text  : _.toSentence(localRandomItems, ', ', ' and ')
 
         $scope.addRandomItem localRandomItems
+        $scope.saveInfoInStorage()
 
       return localRandomItems
 
@@ -134,10 +144,15 @@ angular.module 'RandomicApp.controllers'
 
 
     $scope.addRandomItem = (item) ->
-      if item?.items and item.text then $scope.randomItems.push item else no
+      if item?.items and item.text
+        $scope.randomItems.push item
+        $scope.saveInfoInStorage()
+      else
+        no
 
     $scope.resetRandomItems = ->
       $scope.randomItems = []
+      $scope.saveInfoInStorage()
 
     $scope.saveInfoInStorage = () ->
       simpleStorage.set randomicStorageKeys.INFO_KEY,
@@ -165,12 +180,16 @@ angular.module 'RandomicApp.controllers'
     # =============================================
     # Events
     # =============================================
-
+    $scope.$watch 'randomForm.remember', (newVal, oldVal) ->
+      unless newVal then $scope.resetStorage()
 
     # =============================================
     # Initialize
     # =============================================
+    $scope.restoreInfoFromStorage()
 
+    $timeout ->
+      $scope.startIntro() if $scope.items.length is 0
 
     # =============================================
     # Return Instance
