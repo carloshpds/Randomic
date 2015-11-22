@@ -64,9 +64,9 @@ module.exports = function(config) {
     ],
 
     preprocessors: {
-      'src/**/*.html': ['ng-html2js'],
-      'builds/dev/serve/{app,components}/**/!(*spec|*mock).js' : ['coverage']
+      'src/**/*.html': ['ng-html2js']
     },
+
 
     // generates the coverage
     reporters: [
@@ -95,6 +95,11 @@ module.exports = function(config) {
     }
 
   };
+
+  if(!config.suppressCoverage){
+    configuration.preprocessors['builds/dev/serve/{app,components}/**/!(*spec|*mock).js'] = ['coverage']
+  }
+
 
 
 

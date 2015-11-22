@@ -1,7 +1,7 @@
 'use strict';
 
 var gulp   = require('gulp');
-
+var gutil  = require('gulp-util');
 /*
   ==========================
   Basic Options
@@ -27,11 +27,20 @@ var options = {
   ==========================
 */
 
+
 options.modulesData = {
   proxy: {
     isEnabled: false
+  },
+
+  unitTests : {
+    testAutoConfig: {
+      suppressCoverage: gutil.env['suppress-coverage'] || gutil.env['suppressCoverage']
+    }
   }
+
 }
+
 
 /*
   ==========================
