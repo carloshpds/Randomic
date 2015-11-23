@@ -32,7 +32,7 @@ angular.module 'RandomicApp.controllers'
         doneLabel           : 'Ok'
         steps: [
           { element: '.randomic-logo', intro: "Welcome to Randomic, a friendly user interface to extract random items from a simple list." }
-          { element: '#truco', intro: "You can add items here to start" }
+          { element: '#items-input', intro: "You can add items here to start" }
         ]
 
     $scope.validRun = yes
