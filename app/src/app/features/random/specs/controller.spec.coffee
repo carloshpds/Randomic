@@ -34,10 +34,14 @@ describe 'Controller: RandomController', ()->
     _.mixin(_.mixin($window.s.exports()))
 
 
+
   # =============================================
   # Tests
   # =============================================
   describe 'Method: $scope.resetRandomItems', ->
+    afterEach ->
+      $scope.resetStorage()
+
     it 'Should reset randomItems array', ->
       $scope.randomItems = ['randomItem1', 'randomItem2', 'randomItem3']
 
@@ -49,6 +53,9 @@ describe 'Controller: RandomController', ()->
 
 
   describe 'Method: $scope.calcTimestampSum', ->
+    afterEach ->
+      $scope.resetStorage()
+
     it 'Should calculate how much times we will iterate the items array to get a random item based on the sum of each timestamp numbers', ->
       timeStamp = ["1", "3", "6", "8"]
       randomCycleNumber = $scope.calcTimestampSum(timeStamp)
@@ -59,6 +66,9 @@ describe 'Controller: RandomController', ()->
 
 
   describe 'Method: $scope.validateRandomItem', ->
+    afterEach ->
+      $scope.resetStorage()
+
     beforeEach ->
       $scope.randomItems = [
         { items: ['randomItem1', 'randomItem2'], text: 'randomItem1 and randomItem2'  }
@@ -102,6 +112,9 @@ describe 'Controller: RandomController', ()->
 
 
   describe 'Method: $scope.getRandomItemObj', ->
+    afterEach ->
+      $scope.resetStorage()
+
     it 'Should be sure that the random item is equal to a item from $scope.items choosen by a randomIndex when allows duplicate item', ->
 
       $scope.randomForm.allowDuplicateItem = yes
@@ -137,6 +150,9 @@ describe 'Controller: RandomController', ()->
 
 
   describe 'Method: $scope.addRandomItem', ->
+    afterEach ->
+      $scope.resetStorage()
+
     it 'Should add items', ->
       validItems = [
         { items: ['item1', 'item2'], text: 'item1 and item2' }
@@ -168,6 +184,8 @@ describe 'Controller: RandomController', ()->
 
 
   describe 'Method: $scope.getRandomItems', ->
+    afterEach ->
+      $scope.resetStorage()
 
     beforeEach ->
       $scope.items = [
@@ -201,6 +219,9 @@ describe 'Controller: RandomController', ()->
       expect($scope.validRun).toBeFalsy()
 
   describe '$scope.getAllGroupedByNItems', ->
+    afterEach ->
+      $scope.resetStorage()
+
     beforeEach ->
       $scope.items = [
         {text: 'item1'}

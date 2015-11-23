@@ -181,7 +181,7 @@ angular.module 'RandomicApp.controllers'
     # Events
     # =============================================
     $scope.$watch 'randomForm.remember', (newVal, oldVal) ->
-      unless newVal then $scope.resetStorage()
+      if newVal is no then $scope.resetStorage()
 
     # =============================================
     # Initialize
